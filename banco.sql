@@ -1,12 +1,11 @@
-
-create database  if not exists  Contadores;
+create database  if not exists Contadores ;
 use Contadores; 
-CREATE TABLE if not exists Contador
+CREATE TABLE if not exists contador
 (
-PNome varchar(15) NOT NUll,
-Numero int(10),
-Codigo int(10) not null 
-
+Nome varchar(15) NOT NUll,
+Numero char (15) NOT NUll,
+Codigo int  (15) NOT NUll,
+primary key (Codigo)
 );
-select * from contador;
-desc contador;
+
+
