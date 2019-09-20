@@ -2,7 +2,16 @@
 
 require ('funcoes.php');
 
-$contadores = buscarContadores();
+
+if ($_POST ['acao'] == "adicionar")
+{
+	criarcontador($_POST['cont']);
+}
+else if ($_POST ['acao'] == "mais")
+{
+		incrementarcontador($_POST ['Codigo']);
+}
+$contadores = buscarcontador();
 
 
 ?>
@@ -24,22 +33,25 @@ $contadores = buscarContadores();
 		
 		<?php foreach ($contadores as $c): ?>
 
-			<p><button>⊖</button> 
+			<form action="index.php" method="post">  
+					<button name="acao" class="bot" value="menos">⊖</button> 
 					<p><?= $c['Nome'] ?></p> 
 					<p><?= $c['Numero']  ?></p>
-			<button>⊕</button>
-			</p>
+					<input type="hidden" name="Codigo" value="<?= $c['Codigo']  ?>">
+			<button name="acao" class="bot" value="mais">⊕</button>
+			</form>
 		<?php endforeach; ?>
 
 		</main>
 		<hr>
 		<footer>
+		<form action="index.php" method="post">
 			<p>
          <label for="icont">Novo contador</label> </p>
 
          <p><input type="nome" id="icont" name="cont">
-         <button id="add" type="submit">Adicionar</button></p>
-    	 
+         <button id="add" name="acao" value="adicionar">Adicionar</button></p>
+    	 </form>
 		</footer>
 	</div>
 </body>
