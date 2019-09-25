@@ -49,7 +49,7 @@ function incrementarcontador($id)
 function decrementarcontador($id)
 {
 	$conexao = criarConexao();
-	$sql = "INSERT INTO contador values ( ?, 0, null)";
+	$sql = "update contador set Numero = Numero - 1 where Codigo=?";
 	$comando = $conexao->prepare($sql);
 	return $comando->execute(
 		[
@@ -57,7 +57,16 @@ function decrementarcontador($id)
 			$id
 		]
 	);
-
-
 }
-?>
+ function excluir($id)
+ {
+	$conexao = criarConexao();
+	$sql = "delete from contador where Codigo=?";
+	$comando = $conexao->prepare($sql);
+	return $comando->execute(
+		[
+		
+			$id
+		]
+	);
+ }

@@ -11,6 +11,14 @@ else if ($_POST ['acao'] == "mais")
 {
 		incrementarcontador($_POST ['Codigo']);
 }
+else if ($_POST['acao'] ==  "menos")
+{
+	decrementarcontador ($_POST ['Codigo']);
+}
+else if ($_POST['acao'] == "delete")
+{
+	excluir ($_POST ['Codigo']);
+}
 $contadores = buscarcontador();
 
 
@@ -33,12 +41,15 @@ $contadores = buscarcontador();
 		
 		<?php foreach ($contadores as $c): ?>
 
-			<form action="index.php" method="post">  
+			<form action="index.php" method="post"> 
+					<input type="hidden" name="Codigo" value="<?= $c['Codigo']  ?>"> 
 					<button name="acao" class="bot" value="menos">⊖</button> 
 					<p><?= $c['Nome'] ?></p> 
 					<p><?= $c['Numero']  ?></p>
-					<input type="hidden" name="Codigo" value="<?= $c['Codigo']  ?>">
 			<button name="acao" class="bot" value="mais">⊕</button>
+			<p>
+			<button name="acao" class="bot" value="delete">excluir</button>
+			</p>
 			</form>
 		<?php endforeach; ?>
 
